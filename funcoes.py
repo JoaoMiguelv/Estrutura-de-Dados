@@ -1,4 +1,7 @@
 # FUNÇÃO CALCULAR IMC
+from numpy import append, insert
+
+
 def Calcular_Imc():
 
     peso = float(input('Peso: '))
@@ -37,3 +40,7 @@ print(f'Retângulo 15x25: {calcular_area(15, 25, "R")}')
 print(f'Triângulo 12x16: {calcular_area(12, 16, "T")}')
 
 print(f'Elipse 10x20: {calcular_area(10, 20, "E")}')
+
+
+
+

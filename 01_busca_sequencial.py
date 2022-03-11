@@ -22,10 +22,10 @@ def busca_sequencial(val, lista):
         # Se encontra coincidência, retona a posição
         if lista[pos] == val: return pos
 
-    return -1 #Nda encontrado
+    return 'X - NÃO ENCONTRADO' #Nda encontrado
 
-print(f'Posição de 27: {busca_sequencial(27, nums)}')
-print(f'Posição de 27: {busca_sequencial(40, nums)}')
+print(f'Posição de 54: {busca_sequencial(54, nums)}')
+print(f'Posição de 40: {busca_sequencial(40, nums)}')
 
 
 # Buscando números primos

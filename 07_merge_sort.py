@@ -101,7 +101,7 @@ nomes_ord = merge_sort(nomes)
 mem_atual, mem_pico = tracemalloc.get_traced_memory() # Função que retorna dois valors (se deixar somente 1 variavel, irá ignorar a segunda resposta da função)
 hora_fim = time()
 
-print(nomes_ord[:100]) # Imprime só os 100 primeiros nomes
+#print(nomes_ord[:100]) # Imprime só os 100 primeiros nomes
 
 print(f'Tempo gasto para ordenar: {(hora_fim - hora_ini)*1000}ms')
 print(f'Pico de memória: {mem_pico / 1024 / 1024} MB')

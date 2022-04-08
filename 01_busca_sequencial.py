@@ -24,7 +24,7 @@ def busca_sequencial(val, lista):
 
     return 'X - NÃO ENCONTRADO' #Nda encontrado
 
-print(f'Posição de 54: {busca_sequencial(54, nums)}')
+print(f'Posição de 18: {busca_sequencial(18, nums)}')
 print(f'Posição de 40: {busca_sequencial(40, nums)}')
 
 

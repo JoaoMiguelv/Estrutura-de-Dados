@@ -1,8 +1,10 @@
+divs = juncoes = comps = 0
+
 def merge_sort(lista):
     """
         Função que implementa o algoritmo Merge Sort de forma ITERATIVA
     """
-
+    global divs, comps, juncoes
     # Inicia com o menor tamanho de partição de 2^0 = 1
     tam_part = 1
     n = len(lista)
@@ -22,7 +24,8 @@ def merge_sort(lista):
             # não for potência de 2
             if (tam_part > n//2):
                 meio = dir  - (n % tam_part)
-            
+
+
             tam_esq = meio - esq + 1
             tam_dir = dir - meio
             lista_esq = [0] * tam_esq   # Vetor auxiliar

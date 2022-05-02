@@ -25,5 +25,6 @@ print(fila)
 fila.enqueue('Gercina')
 fila.enqueue('Ladislau')
 
+
 # Imprime a fila
 print(fila)

@@ -37,3 +37,12 @@ print('Atendido: ', atendido)
 
 # imprime o deque
 print(deque)
+
+# Consultando o próximo a ser atendido
+proximo = deque.peek_front()
+
+# Consultando o último da fila
+ultimo = deque.peek_back()
+
+print('Próximo: ', proximo)
+print('Último: ', ultimo)

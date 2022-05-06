@@ -1,4 +1,3 @@
-from operator import imod
 from lib.queue import Queue
 
 fila = Queue()

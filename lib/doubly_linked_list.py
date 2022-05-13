@@ -73,13 +73,41 @@ class DoublyLinkedList:
             self.__tail = inserted
 
         # 4° Caso: Inserção na posição intermediária (entre os nodos)
-        elif:
-            # Encontrar o nodo anterior à posição de inserção
+        else:
+            # Encontrar o nodo atualmente na posição de inserção
+            node_pos = self.__find_node(pos)
+            # Encontra o nodo da posição anterior à de inserção
+            before = node_pos.prev
 
-        
+
         # Incrementa a contagem de itens
         self.__count += 1
     
     '''
-       Função privada que encontra o nodo da posição especificada 
+       Função privada que encontra o nodo da posição especificada
     '''
+    def __find_node(self, pos):
+        # 1° Caso: Posição 0, retorna __head
+        if pos == 0:
+            return self.__head
+
+        # 2° Caso: Posição = count-1, retorna __tail
+        elif pos == self.count-1:
+            return self.__tail
+        
+        # 3° Caso: nodo intermediário, retorna o nodo da posição
+        else:
+            # Se o nodo estiver na primeira metade da lista,
+            # faz o percurso a partir de __head, seguindo o next
+            if pos <= self.count//2:
+                node = self.__head
+                for i in range(1, pos + 1):
+                    node = node.next
+
+            # Senão, faz o percurso a partir de __tail, seguindo o prev
+            else:
+                node = self.__tail
+                for i in range(self.count - 2, pos - 1, -1):
+                    node = node.prev
+
+            return node

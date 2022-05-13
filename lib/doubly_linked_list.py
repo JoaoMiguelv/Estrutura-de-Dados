@@ -2,9 +2,6 @@
     Classe que representa uma unidade de informação na lista duplamente encadeada.
 '''
 
-from numpy import insert
-
-
 class Node:
 
     ''' Método construtor '''
@@ -79,6 +76,10 @@ class DoublyLinkedList:
             # Encontra o nodo da posição anterior à de inserção
             before = node_pos.prev
 
+            before.next = inserted
+            inserted.prev = before
+            inserted.next = node_pos
+            node_pos.prev = inserted
 
         # Incrementa a contagem de itens
         self.__count += 1

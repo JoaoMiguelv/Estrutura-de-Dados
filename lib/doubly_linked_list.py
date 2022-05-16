@@ -133,6 +133,18 @@ class DoublyLinkedList:
             # Em caso de remoção do único nodo restante, __head precisa passar a valer None
             if self.count == 1:
                 self.__head = None
+
+        # 4° Caso: Remoção de posição intermediária
+        else:
+            # Encontra o nodo a ser removido
+            removed = self.__find_node(pos)
+            before = removed.prev # Nodo anterior
+            after = removed.next # Nodo posterior
+
+            # O nodo before passa a apontar à frente para o nodo after
+            before.next = after
+            # O nodo posterior passa a apontar para trás para o nodo before
+            after.prev = before
         
         # Decrementando a quantidade de itens da lista
         self.__count -= 1

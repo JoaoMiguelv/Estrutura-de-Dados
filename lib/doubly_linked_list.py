@@ -83,7 +83,61 @@ class DoublyLinkedList:
 
         # Incrementa a contagem de itens
         self.__count += 1
-    
+
+    '''
+        Método de "atalho" para a inserção no início da lista
+    '''
+    def insert_head(self, val):
+        self.insert(0, val)
+
+    '''
+        Método de "atalho" para a inserção no final da lista
+    '''
+    def insert_tail(self, val):
+        self.insert(self.count, val)
+
+    '''
+        Método que remove o nodo da posição especificada
+    '''
+    def remove(self, pos):
+        # 1° Caso: Lista vazia ou posição fora dos limites da lista
+        if self.is_empty or pos < 0 or pos >= self.count-1:
+            raise Exception('ERRO: Posição inválida para remoção')
+        
+        # 2° Caso: Remoção do início da lista
+        if pos == 0:
+            # Será removido o head da lista
+            removed = self.__head
+
+            # O novo head passa a ser o sucessor do nodo removido
+            self.__head = removed.next
+
+            # Se o novo __head for um nodo válido, ele não pode ter antecessor
+            if self.__head is not None: self.__head.prev = None
+
+            # Em caso de remoção do único nodo restante, __tail precisa passar a valer None
+            if self.count == 1:
+                self.__tail = None
+
+        # 3° Caso: remoção do final da lista
+        elif pos == self.count-1:
+            # Será removido o tail da lista
+            removed = self.__tail
+
+            # O novo tail passa a ser o antecessor do nodo removido
+            self.__tail = removed.prev
+
+            # Se o novo __tail for um nodo válido, ele não pode ter sucessor
+            if self.__tail is not None: self.__tail.next = None
+
+            # Em caso de remoção do único nodo restante, __head precisa passar a valer None
+            if self.count == 1:
+                self.__head = None
+        
+        # Decrementando a quantidade de itens da lista
+        self.__count -= 1
+        # Retorna o dado de usuário armazenado no nodo removido
+        return removed.data
     '''
        Função privada que encontra o nodo da posição especificada
     '''
@@ -112,3 +166,16 @@ class DoublyLinkedList:
                     node = node.prev
 
             return node
+    '''
+        Método que permite visualizar a lista encadeada como uma string 
+    '''
+    def __str__(self):
+      output = ""
+      node = self.__head
+      for i in range(self.count):
+        if output != "": output += ", "
+        output += f"({i}) => {node.data}"
+        node = node.next
+      return f"[ {output} ], count: {self.count}"
+##################################################################################
+

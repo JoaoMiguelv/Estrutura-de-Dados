@@ -59,3 +59,127 @@ class BinarySearchTree:
             if root.right is None: root.right = inserting
             # Senão, passa a considerar o nodo da direita como raiz
             else: self.__insert_node(root.right, inserting)
+
+    """
+        Método que percorre a árvore em-ordem
+        1º: percorre recursivamente a subárvore esquerda em-ordem
+        2º: visita a raiz
+        3º: percorre recursivamente a subárvore direita em-ordem
+    """
+    def in_order_traversal(self, root = False):
+        newline = False
+
+        # Se root for False, começamos pela raiz da árvore
+        if root is False: 
+            root = self.__root
+            newline = True
+
+        if root is not None:                    # Se houver valor na raiz
+            self.in_order_traversal(root.left)  # Visita a subárvore esquerda
+            # end=' ' evita a quebra de linha no final do print
+            print(str(root.data), end=' ')         
+            self.in_order_traversal(root.right) # Visita a subárvore direita
+
+        if newline: print('\n')
+
+    """
+        Método que percorre a árvore pré-ordem
+        1º: visita a raiz
+        2º: percorre recursivamente a subárvore esquerda pré-ordem
+        3º: percorre recursivamente a subárvore direita pré-ordem
+    """
+    def pre_order_traversal(self, root = False):
+        newline = False
+
+        # Se root for False, começamos pela raiz da árvore
+        if root is False: 
+            root = self.__root
+            newline = True
+
+        if root is not None:                    # Se houver valor na raiz
+            # end=' ' evita a quebra de linha no final do print
+            print(str(root.data), end=' ')
+            self.pre_order_traversal(root.left)  # Visita a subárvore esquerda
+            self.pre_order_traversal(root.right) # Visita a subárvore direita
+
+        if newline: print('\n')
+
+    """
+        Método que percorre a árvore pós-ordem
+        1º: percorre recursivamente a subárvore esquerda pós-ordem
+        2º: percorre recursivamente a subárvore direita pós-ordem
+        3º: visita a raiz
+    """
+    def post_order_traversal(self, root = False):
+        newline = False
+
+        # Se root for False, começamos pela raiz da árvore
+        if root is False: 
+            root = self.__root
+            newline = True
+
+        if root is not None:                    # Se houver valor na raiz
+            self.post_order_traversal(root.left)  # Visita a subárvore esquerda
+            self.post_order_traversal(root.right) # Visita a subárvore direita
+            # end=' ' evita a quebra de linha no final do print
+            print(str(root.data), end=' ')
+
+        if newline: print('\n')
+
+    """
+        Método PRIVADO que procura por um nodo que contêm um valor
+        fornecido (key) e, retorna esse nodo, caso o encontre.
+        Se o nodo não existir, retorna None.
+    """
+    def __search_node(self, root, key):
+        # 1º caso: árvore vazia
+        if root is None: return None
+        # 2º caso: o valor de key é MENOR que o valor na raiz
+        # Continua a buscar recursivamente pela subárvore ESQUERDA
+        if key < root.data: return self.__search_node(root.left, key)
+        # 3º caso: o valor de key é MAIOR que o valor na raiz
+        # Continua a buscar recursivamente pela subárvore DIREITA
+        if key > root.data: return self.__search_node(root.right, key)
+        # 4º caso: o valor de key é IGUAL ao valor na raiz
+        # ENCONTROU O NODO; retorna o nodo root
+        return root
+
+    """
+        Método PÚBLICO que determina se um dado valor (key) existe
+        ou não na árvore
+    """
+    def exists(self, key):
+        node = self.__search_node(self.__root, key)
+        return (node is not None)
+
+    """
+        Método que retorna o MENOR nodo de uma subárvore e sua profundidade
+        Esse método deveria ser privado, mas vamos deixá-lo público para testar
+    """
+    def min_node(self, root = None):
+        if root is None: root = self.__root
+        node = root
+        depth = 0   # Profundidade
+        while node is not None and node.left is not None:
+            node = node.left
+            depth += 1
+        return (node, depth)    # Isto é uma tupla
+
+    """
+        Método que retorna o MAIOR nodo de uma subárvore e sua profundidade
+        Esse método deveria ser privado, mas vamos deixá-lo público para testar
+    """
+    def max_node(self, root = None):
+        if root is None: root = self.__root
+        node = root
+        depth = 0   # Profundidade
+        while node is not None and node.right is not None:
+            node = node.right
+            depth += 1
+        return (node, depth)    # Isto é uma tupla
+
+    # Os métodos de remoção podem ser vistos no repositório do semestre passado:
+    # https://github.com/fcintra2/ed-not-2021-2
+    # https://github.com/fcintra2/ed-not-2021-2/blob/master/lib/binary_search_tree.py
+    
+
